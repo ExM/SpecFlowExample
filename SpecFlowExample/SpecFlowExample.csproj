@@ -55,6 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Search.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\StepDefinitions\BaseSteps.cs" />
     <Compile Include="Features\StepDefinitions\SiteSearchSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

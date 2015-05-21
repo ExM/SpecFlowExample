@@ -2,32 +2,18 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SpecFlowExample.Features.StepDefinitions;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.features.steps_definitions
 {
     [Binding]
-    public class SiteSearchSteps
-    {
-        private IWebDriver driver;
-
-        [BeforeScenario]
-        public void InitScenario()
-        {
-            driver = new ChromeDriver();
-        }
-
-        [AfterScenario]
-        public void TearDownScenario()
-        {
-            driver.Dispose();
-        }
-
+    public class SiteSearchSteps : BaseSteps
+    {       
         [Given(@"User open global web site")]
         public void GivenUserOpenGlobalWebSite()
         {
-
-            driver.Url = "http://www.abbyy.com";
+            driver.Navigate().GoToUrl("http://www.abbyy.com");
         }
 
         [Given(@"fill Search field with query ""(.*)""")]
