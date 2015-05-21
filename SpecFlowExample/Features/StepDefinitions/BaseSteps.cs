@@ -12,7 +12,7 @@ namespace SpecFlowExample.Features.StepDefinitions
     [Binding]
     public class BaseSteps
     {
-        public IWebDriver driver;
+        public IWebDriver driver;        
 
         [BeforeScenario]
         public void InitScenario()

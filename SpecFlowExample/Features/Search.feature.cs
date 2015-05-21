@@ -66,16 +66,16 @@ namespace SpecFlowExample.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
+        [NUnit.Framework.DescriptionAttribute("Correct search")]
         [NUnit.Framework.CategoryAttribute("search")]
-        public virtual void AddTwoNumbers()
+        public virtual void CorrectSearch()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Correct search", new string[] {
                         "search"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("User open global web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("User open ABBYY web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.And("fill Search field with query \"Languages and Dictionaries\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
