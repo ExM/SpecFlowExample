@@ -35,7 +35,8 @@ namespace SpecFlowExample.features.steps_definitions
 
         [Then(@"the search results should be on the screen")]
         public void ThenTheSearchResultsShouldBeOnTheScreen()
-        {                        
+        {
+            SearchResultsPage searchResultsPage = new SearchResultsPage(WebDriver);
         }
     }
 }

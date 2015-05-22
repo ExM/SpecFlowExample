@@ -3,8 +3,13 @@
 	To do this, he can always use the search function implemented in the header.	
 
 @search
-Scenario: Correct search
+Scenario Outline: Correct search
 	Given User open ABBYY web site
-	And fill Search field with query "Languages and Dictionaries"
+	And fill Search field with query <query>
 	When User press Search button
 	Then the search results should be on the screen
+
+Examples: 
+	| query                         |
+	| "Languages and Dictionaries"  |
+	| "~!@#$%^&*()_+/*-+:";'\<>?~`" |	

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
@@ -15,15 +16,24 @@ namespace SpecFlowExample.Features.StepDefinitions
     {
         public static IWebDriver driver;        
 
-        [BeforeScenario]
-        public void InitScenario()
-        {                        
+        [BeforeTestRun]
+        public static void InitScenario()
+        {            
         }
 
         [AfterScenario]
-        public void TearDownScenario()
+        public void AfterWebTest()
         {
-            if (WebDriver != null) WebDriver.Quit();
+            if (ScenarioContext.Current.TestError != null)
+            {
+                TakeScreenshot(WebDriver);
+            }
+        }
+
+        [AfterTestRun]
+        public static void TearDownScenario()
+        {
+            if (WebDriver != null) WebDriver.Dispose();
         }
     }
 }

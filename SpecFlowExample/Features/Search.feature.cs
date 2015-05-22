@@ -68,16 +68,23 @@ namespace SpecFlowExample.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Correct search")]
         [NUnit.Framework.CategoryAttribute("search")]
-        public virtual void CorrectSearch()
+        [NUnit.Framework.TestCaseAttribute("\"Languages and Dictionaries\"", null)]
+        [NUnit.Framework.TestCaseAttribute("\"~!@#$%^&*()_+/*-+:\";\'\\<>?~`\"", null)]
+        public virtual void CorrectSearch(string query, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Correct search", new string[] {
-                        "search"});
+            string[] @__tags = new string[] {
+                    "search"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Correct search", @__tags);
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("User open ABBYY web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("fill Search field with query \"Languages and Dictionaries\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("fill Search field with query {0}", query), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
  testRunner.When("User press Search button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
