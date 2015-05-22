@@ -12,7 +12,7 @@ namespace SpecFlowExample.features.steps_definitions
     [Binding]
     public class SiteSearchSteps : BaseSteps
     {
-        MainPage mainPage = new MainPage(WebDriver);        
+        private MainPage mainPage;
 
         [Given(@"User open ABBYY web site")]
         public void GivenUserOpenGlobalWebSite()
@@ -22,7 +22,8 @@ namespace SpecFlowExample.features.steps_definitions
 
         [Given(@"fill Search field with query ""(.*)""")]
         public void GivenFillSearchFieldWithQuery(string query)
-        {                        
+        {
+            mainPage = new MainPage(WebDriver);
             mainPage.SearchField(query);
         }
 

@@ -14,8 +14,8 @@ namespace SpecFlowExample.Features.Pages
         public PageBase(IWebDriver driver,String titleOfPage)
         {
             Driver = driver;               
-            //if (driver.Title != titleOfPage)
-            //    throw new NoSuchWindowException("PageObjectBase: The Page Title doesnt match.");            
+            if (driver.Title != titleOfPage)
+                throw new NoSuchWindowException("PageObjectBase: The Page Title doesnt match.");            
         }
     }
 }
