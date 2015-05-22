@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
+using SpecFlowExample.Support;
 
 namespace SpecFlowExample.Features.StepDefinitions
 {
     [Binding]
-    public class BaseSteps
+    public class BaseSteps : SeleniumDriver
     {
-        public IWebDriver driver;        
+        public static IWebDriver driver;        
 
         [BeforeScenario]
         public void InitScenario()
-        {
-            driver = new ChromeDriver();            
+        {                        
         }
 
         [AfterScenario]
         public void TearDownScenario()
         {
-            driver.Dispose();
+            if (WebDriver != null) WebDriver.Quit();
         }
     }
 }

@@ -9,23 +9,18 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace SpecFlowExample.Features.Pages
 {
-    public class SearchResultsPage
+    class SearchResultsPage : PageBase
     {
-        [FindsBy(How = How.XPath, Using = "//h1[text()='Search results']")]
-        private IWebElement resultsHeader;
+        private IWebDriver Driver { get; set; }
 
-        public static SearchResultsPage NavigateTo(IWebDriver driver)
-        {
-            //driver.Navigate().GoToUrl("http://www.abbyy.com");
-            var searchResultsPage = new SearchResultsPage();
-            PageFactory.InitElements(driver, searchResultsPage);
-            return searchResultsPage;
-        }
+        [FindsBy(How = How.XPath, Using = "//title")]
+        public IWebElement Title { get; set; }
 
-        public void SearchResultsHeader(IWebDriver driver, SearchResultsPage searchResultsPage)
+        public SearchResultsPage(IWebDriver driver)
+            : base(driver, "Search")
         {
-            PageFactory.InitElements(driver, searchResultsPage);
-            StringAssert.AreEqualIgnoringCase(resultsHeader.Text, "Search results");            
+            Driver = driver;
+            PageFactory.InitElements(driver, this);
         }
     }
 }

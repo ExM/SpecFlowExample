@@ -12,13 +12,12 @@ namespace SpecFlowExample.features.steps_definitions
     [Binding]
     public class SiteSearchSteps : BaseSteps
     {
-        public MainPage mainPage = new MainPage();
-        public SearchResultsPage searchResultsPage = new SearchResultsPage();
+        MainPage mainPage = new MainPage(WebDriver);        
 
         [Given(@"User open ABBYY web site")]
         public void GivenUserOpenGlobalWebSite()
         {
-            mainPage = MainPage.NavigateTo(driver);
+            Visit("http://www.abbyy.com");
         }
 
         [Given(@"fill Search field with query ""(.*)""")]
@@ -35,8 +34,7 @@ namespace SpecFlowExample.features.steps_definitions
 
         [Then(@"the search results should be on the screen")]
         public void ThenTheSearchResultsShouldBeOnTheScreen()
-        {            
-            searchResultsPage.SearchResultsHeader(driver, searchResultsPage);
+        {                        
         }
     }
 }
