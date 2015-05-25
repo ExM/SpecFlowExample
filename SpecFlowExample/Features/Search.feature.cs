@@ -66,11 +66,11 @@ namespace SpecFlowExample.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Correct search")]
+        [NUnit.Framework.DescriptionAttribute("Search")]
         [NUnit.Framework.CategoryAttribute("search")]
         [NUnit.Framework.TestCaseAttribute("\"Languages and Dictionaries\"", null)]
         [NUnit.Framework.TestCaseAttribute("\"~!@#$%^&*()_+/*-+:\";\'\\<>?~`\"", null)]
-        public virtual void CorrectSearch(string query, string[] exampleTags)
+        public virtual void Search(string query, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "search"};
@@ -78,7 +78,7 @@ namespace SpecFlowExample.Features
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
             }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Correct search", @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search", @__tags);
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7

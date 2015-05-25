@@ -15,7 +15,7 @@ namespace SpecFlowExample.Features.Pages
         {
             Driver = driver;               
             if (driver.Title != titleOfPage)
-                throw new NoSuchWindowException("PageObjectBase: The Page Title doesnt match.");            
+                throw new NoSuchWindowException(String.Format("PageObjectBase: The Page Title doesnt match. Expected \"{0}\". Got \"{1}\"", titleOfPage, Driver.Title));            
         }
     }
 }

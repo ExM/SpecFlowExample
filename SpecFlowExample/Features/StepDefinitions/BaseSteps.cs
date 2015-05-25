@@ -33,7 +33,7 @@ namespace SpecFlowExample.Features.StepDefinitions
         [AfterTestRun]
         public static void TearDownScenario()
         {
-            if (WebDriver != null) WebDriver.Dispose();
+            if (WebDriver != null) WebDriver.Quit();
         }
     }
 }

@@ -3,7 +3,7 @@
 	To do this, he can always use the search function implemented in the header.	
 
 @search
-Scenario Outline: Correct search
+Scenario Outline: Search
 	Given User open ABBYY web site
 	And fill Search field with query <query>
 	When User press Search button
