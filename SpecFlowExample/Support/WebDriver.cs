@@ -30,7 +30,7 @@ namespace SpecFlowExample.Support
                         switch (ConfigurationManager.AppSettings["browser"])
                         {
                             case "Chrome":
-                                _driver = new ChromeDriver();
+                                _driver = new ChromeDriver(@"..\..\Support\Drivers");
                                 ConfigureDriver();
                                 break;
                             case "Firefox":
@@ -38,7 +38,8 @@ namespace SpecFlowExample.Support
                                 ConfigureDriver();
                                 break;
                             case "IE":
-                                _driver = new InternetExplorerDriver();
+
+                                _driver = new InternetExplorerDriver(@"..\..\Support\Drivers");
                                 ConfigureDriver();
                                 break;
                             default:
