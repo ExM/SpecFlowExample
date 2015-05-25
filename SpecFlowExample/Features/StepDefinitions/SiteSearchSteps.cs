@@ -1,29 +1,24 @@
-﻿using System;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.PageObjects;
-using SpecFlowExample.Features.Pages;
-using SpecFlowExample.Features.StepDefinitions;
+﻿using SpecFlowExample.Features.Pages;
+using SpecFlowExample.Support;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.features.steps_definitions
 {
     [Binding]
-    public class SiteSearchSteps : BaseSteps
+    public class SiteSearchSteps : SeleniumStepsBase
     {
         private MainPage mainPage;
 
         [Given(@"User open ABBYY web site")]
         public void GivenUserOpenGlobalWebSite()
         {
-            Visit("http://www.abbyy.com");
+            selenium.NavigateTo("/");
         }
 
         [Given(@"fill Search field with query ""(.*)""")]
         public void GivenFillSearchFieldWithQuery(string query)
         {
-            mainPage = new MainPage(WebDriver);
+            mainPage = new MainPage(selenium);
             mainPage.SearchField(query);
         }
 
@@ -36,7 +31,7 @@ namespace SpecFlowExample.features.steps_definitions
         [Then(@"the search results should be on the screen")]
         public void ThenTheSearchResultsShouldBeOnTheScreen()
         {
-            SearchResultsPage searchResultsPage = new SearchResultsPage(WebDriver);
+            SearchResultsPage searchResultsPage = new SearchResultsPage(selenium);
         }
     }
 }

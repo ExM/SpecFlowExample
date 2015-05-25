@@ -61,10 +61,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Search.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\StepDefinitions\BaseSteps.cs" />
     <Compile Include="Features\StepDefinitions\SiteSearchSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Support\WebDriver.cs" />
+    <Compile Include="Support\SeleniumController.cs" />
+    <Compile Include="Support\SeleniumStepsBase.cs" />
+    <Compile Include="Support\SeleniumSupport.cs" />
+    <Compile Include="Support\WebDriverExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
