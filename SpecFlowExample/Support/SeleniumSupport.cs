@@ -23,8 +23,7 @@ namespace SpecFlowExample.Support
             if (!ReuseWebSession)
                 SeleniumController.Instance.Stop();
         }
-
-        //[AfterFeature]
+        
         [AfterTestRun]
         public static void AfterWebFeature()
         {

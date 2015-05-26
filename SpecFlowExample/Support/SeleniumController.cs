@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 
 namespace SpecFlowExample.Support
 {
@@ -38,7 +40,12 @@ namespace SpecFlowExample.Support
                         Selenium = new FirefoxDriver();
                         break;
                     case "IE":
-                        Selenium = new InternetExplorerDriver(@"..\..\Support\Drivers");
+                        var options = new InternetExplorerOptions();
+                        options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
+                        options.IgnoreZoomLevel = true;
+                        options.EnableNativeEvents = false;
+                        string path = @"..\..\Support\Drivers";
+                        Selenium = new InternetExplorerDriver(path, options);
                         break;
                     default:
                         Console.WriteLine("App.config key error.");
@@ -73,7 +80,7 @@ namespace SpecFlowExample.Support
                 Debug.WriteLine(ex, "Selenium stop error");
             }
             Selenium = null;
-            Trace("Selenium stopped");
+            Trace("Selenium stopped");            
         }
     }
 }
