@@ -32,6 +32,7 @@ namespace SpecFlowExample.features.steps_definitions
         public void ThenTheSearchResultsShouldBeOnTheScreen()
         {
             SearchResultsPage searchResultsPage = new SearchResultsPage(selenium);
+            searchResultsPage.IsTitleCorrect();                   
         }
     }
 }

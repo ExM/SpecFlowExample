@@ -1,17 +1,24 @@
 ﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.Features.Pages
 {
     class PageBase
     {
         private IWebDriver Driver { get; set; }
+        private string Title { get; set; }
 
         public PageBase(IWebDriver driver,String titleOfPage)
         {
-            Driver = driver;               
-            if (driver.Title != titleOfPage)
-                throw new NoSuchWindowException(String.Format("PageObjectBase: The Page Title doesnt match. Expected \"{0}\". Got \"{1}\"", titleOfPage, Driver.Title));            
+            Driver = driver;
+            Title = titleOfPage;
+        }
+
+        public void IsTitleCorrect()
+        {
+            Assert.AreEqual(Title, Driver.Title);                        
         }
     }
 }
