@@ -18,7 +18,7 @@ namespace SpecFlowExample.Support
             SeleniumController.Instance.Start();
         }
 
-        [AfterScenario]
+        [AfterStep]
         public static void ScreenshotAfterTest()
         {
             if (ScenarioContext.Current.TestError != null)
