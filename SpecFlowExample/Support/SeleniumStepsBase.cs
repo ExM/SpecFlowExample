@@ -2,11 +2,11 @@
 
 namespace SpecFlowExample.Support
 {
-    public abstract class SeleniumStepsBase
-    {
-        protected IWebDriver selenium
-        {
-            get { return SeleniumController.Instance.Selenium; }
-        }
-    }
+	public abstract class SeleniumStepsBase
+	{
+		protected IWebDriver Selenium
+		{
+			get { return SeleniumController.Instance.Selenium; }
+		}
+	}
 }

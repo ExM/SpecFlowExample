@@ -5,20 +5,20 @@ using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.Features.Pages
 {
-    class PageBase
-    {
-        private IWebDriver Driver { get; set; }
-        private string Title { get; set; }
+	class PageBase
+	{
+		private IWebDriver Driver { get; set; }
+		private string Title { get; set; }
 
-        public PageBase(IWebDriver driver,String titleOfPage)
-        {
-            Driver = driver;
-            Title = titleOfPage;
-        }
+		public PageBase(IWebDriver driver, string titleOfPage)
+		{
+			Driver = driver;
+			Title = titleOfPage;
+		}
 
-        public void IsTitleCorrect()
-        {
-            Assert.AreEqual(Title, Driver.Title);                        
-        }
-    }
+		public void IsTitleCorrect()
+		{
+			Assert.AreEqual(Title, Driver.Title);
+		}
+	}
 }

@@ -12,4 +12,4 @@ Scenario Outline: Search
 Examples: 
 	| query                         |
 	| "Languages and Dictionaries"  |
-	| "~!@#$%^&*()_+/*-+:";'\<>?~`" |	
+	| "~!@#$%^&*()_+/*-+:";'\<>?~`" |
