@@ -132,11 +132,11 @@ namespace SpecFlowExample.Support
 	    {
 	        switch (browser)
 	        {
-	            case Browsers.Chrome:
+	            case "Chrome":
 	                return new ChromeDriver(@"Support\Drivers");
-	            case Browsers.Firefox:
+	            case "Firefox":
 	                return new FirefoxDriver();
-	            case Browsers.InternetExplorer:
+	            case "IE":
 	                return new InternetExplorerDriver(@"Support\Drivers",
 	                    new InternetExplorerOptions
 	                    {

@@ -54,7 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\Browsers.cs" />
     <Compile Include="Features\Pages\MainPage.cs" />
     <Compile Include="Features\Pages\PageBase.cs" />
     <Compile Include="Features\Pages\SearchResultsPage.cs" />

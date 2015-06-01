@@ -8,9 +8,9 @@ using SpecFlowExample.Support;
 
 namespace SpecFlowExample.Features
 {
-    [TestFixture(Browsers.InternetExplorer)]
-    [TestFixture(Browsers.Firefox)]
-    [TestFixture(Browsers.Chrome)]
+    [TestFixture("IE")]
+    [TestFixture("Firefox")]
+    [TestFixture("Chrome")]
     public partial class SiteSearchFeature 
     {
         public SiteSearchFeature(string browser)
