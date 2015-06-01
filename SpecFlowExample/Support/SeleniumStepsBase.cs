@@ -3,10 +3,10 @@
 namespace SpecFlowExample.Support
 {
 	public abstract class SeleniumStepsBase
-	{
+	{        
 		protected IWebDriver Selenium
 		{
-			get { return SeleniumController.Instance.Selenium; }
+            get { return SeleniumController.Get().Selenium; }
 		}
 	}
 }

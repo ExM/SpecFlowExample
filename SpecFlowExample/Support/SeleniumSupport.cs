@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.Support
@@ -13,8 +14,8 @@ namespace SpecFlowExample.Support
 
 		[BeforeScenario]
 		public static void BeforeWebScenario()
-		{
-			SeleniumController.Instance.Start();
+		{            
+		    SeleniumController.Get().Start();
 		}
 
 		[AfterStep]
@@ -22,7 +23,7 @@ namespace SpecFlowExample.Support
 		{
 			if (ScenarioContext.Current.TestError != null)
 			{
-				SeleniumController.Instance.TakeScreenshot();
+                SeleniumController.Get().TakeScreenshot();
 			}
 		}
 
@@ -30,13 +31,13 @@ namespace SpecFlowExample.Support
 		public static void AfterWebScenario()
 		{
 			if (!ReuseWebSession)
-				SeleniumController.Instance.Stop();
+                SeleniumController.Get().Stop();
 		}
 
 		[AfterTestRun]
 		public static void AfterWebFeature()
 		{
-			SeleniumController.Instance.Stop();
+            SeleniumController.Get().Stop();
 		}
 	}
 }
