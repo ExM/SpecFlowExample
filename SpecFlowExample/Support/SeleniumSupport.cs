@@ -14,8 +14,8 @@ namespace SpecFlowExample.Support
 
 		[BeforeScenario]
 		public static void BeforeWebScenario()
-		{            
-		    SeleniumController.Get().Start();
+		{
+			SeleniumController.Instance.Start();
 		}
 
 		[AfterStep]
@@ -23,7 +23,7 @@ namespace SpecFlowExample.Support
 		{
 			if (ScenarioContext.Current.TestError != null)
 			{
-                SeleniumController.Get().TakeScreenshot();
+				SeleniumController.Instance.TakeScreenshot();
 			}
 		}
 
@@ -31,13 +31,13 @@ namespace SpecFlowExample.Support
 		public static void AfterWebScenario()
 		{
 			if (!ReuseWebSession)
-                SeleniumController.Get().Stop();
+				SeleniumController.Instance.Stop();
 		}
 
 		[AfterTestRun]
 		public static void AfterWebFeature()
 		{
-            SeleniumController.Get().Stop();
+			SeleniumController.Instance.Stop();
 		}
 	}
 }
