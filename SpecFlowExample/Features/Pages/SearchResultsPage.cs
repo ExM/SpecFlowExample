@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace SpecFlowExample.Features.Pages
 {
-	class SearchResultsPage : PageBase
+	internal class SearchResultsPage : PageBase
 	{
 		private IWebDriver Driver { get; set; }
 

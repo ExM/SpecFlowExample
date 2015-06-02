@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
@@ -8,7 +7,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using SpecFlowExample.Properties;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Tracing;
 
@@ -40,6 +38,9 @@ namespace SpecFlowExample.Support
 
 			Selenium.Manage().Timeouts().ImplicitlyWait(DefaultTimeout);
 			Selenium.Manage().Window.Maximize();
+
+			if (FeatureContext.Current != null)
+				FeatureContext.Current["Browser"] = Selenium;
 
 			Trace("Selenium started");
 		}

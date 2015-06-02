@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.Support
 {
@@ -6,7 +7,7 @@ namespace SpecFlowExample.Support
 	{
 		protected IWebDriver Selenium
 		{
-			get { return SeleniumController.Instance.Selenium; }
+			get { return (IWebDriver) FeatureContext.Current["Browser"]; }
 		}
 	}
 }

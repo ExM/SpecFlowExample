@@ -1,11 +1,9 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.Features.Pages
 {
-	class PageBase
+	internal class PageBase
 	{
 		private IWebDriver Driver { get; set; }
 		private string Title { get; set; }

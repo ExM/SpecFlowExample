@@ -1,7 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using SpecFlowExample.Features.Pages;
+﻿using SpecFlowExample.Features.Pages;
 using SpecFlowExample.Support;
 using TechTalk.SpecFlow;
 
@@ -12,10 +9,10 @@ namespace SpecFlowExample.Features.StepDefinitions
 	{
 		private readonly MainPage _mainPage;
 
-	    public SiteSearchSteps()
-	    {
-	        _mainPage = new MainPage(Selenium);
-	    }
+		public SiteSearchSteps()
+		{
+			_mainPage = new MainPage(Selenium);
+		}
 
 		[Given(@"User open ABBYY web site")]
 		public void GivenUserOpenGlobalWebSite()
