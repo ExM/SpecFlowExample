@@ -10,7 +10,7 @@ namespace SpecFlowExample.Features
 	{
 		public SiteSearchFeature(string browser)
 		{
-			SeleniumController.Set(browser);
+			SeleniumSupport.Set(browser);
 		}
 	}
 }

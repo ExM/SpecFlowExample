@@ -1,23 +1,26 @@
-﻿using SpecFlowExample.Features.Pages;
+﻿using OpenQA.Selenium;
+using SpecFlowExample.Features.Pages;
 using SpecFlowExample.Support;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.Features.StepDefinitions
 {
 	[Binding]
-	public class SiteSearchSteps : SeleniumStepsBase
+	public class SiteSearchSteps
 	{
 		private readonly MainPage _mainPage;
+		private IWebDriver _webDriver;
 
-		public SiteSearchSteps()
+		public SiteSearchSteps(IWebDriver webDriver)
 		{
-			_mainPage = new MainPage(Selenium);
+			_webDriver = webDriver;
+			_mainPage = new MainPage(_webDriver);
 		}
 
 		[Given(@"User open ABBYY web site")]
 		public void GivenUserOpenGlobalWebSite()
 		{
-			Selenium.NavigateTo("/");
+			_webDriver.NavigateTo("/");
 		}
 
 		[Given(@"fill Search field with query ""(.*)""")]
@@ -35,7 +38,7 @@ namespace SpecFlowExample.Features.StepDefinitions
 		[Then(@"the search results should be on the screen")]
 		public void ThenTheSearchResultsShouldBeOnTheScreen()
 		{
-			var searchResultsPage = new SearchResultsPage(Selenium);
+			var searchResultsPage = new SearchResultsPage(_webDriver);
 			searchResultsPage.IsTitleCorrect();
 		}
 	}
