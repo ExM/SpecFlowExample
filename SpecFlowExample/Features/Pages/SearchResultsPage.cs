@@ -5,16 +5,10 @@ namespace SpecFlowExample.Features.Pages
 {
 	internal class SearchResultsPage : PageBase
 	{
-		private IWebDriver Driver { get; set; }
-
-		[FindsBy(How = How.XPath, Using = "//title")]
-		public IWebElement Title { get; set; }
-
 		public SearchResultsPage(IWebDriver driver)
 			: base(driver, "Search")
 		{
-			Driver = driver;
-			PageFactory.InitElements(driver, this);
+			PageFactory.InitElements(Driver, this);
 		}
 	}
 }

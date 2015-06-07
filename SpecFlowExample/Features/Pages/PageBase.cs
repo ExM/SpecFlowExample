@@ -1,22 +1,27 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace SpecFlowExample.Features.Pages
 {
 	internal class PageBase
 	{
-		private IWebDriver Driver { get; set; }
-		private string Title { get; set; }
+		protected IWebDriver Driver { get; private set; }
 
-		public PageBase(IWebDriver driver, string titleOfPage)
+		private string ExpectedTitle { get; set; }
+
+		[FindsBy(How = How.XPath, Using = "//title")]
+		public IWebElement Title { get; set; }
+
+		public PageBase(IWebDriver driver, string expectedTitle)
 		{
 			Driver = driver;
-			Title = titleOfPage;
+			ExpectedTitle = expectedTitle;
 		}
 
 		public void IsTitleCorrect()
 		{
-			Assert.AreEqual(Title, Driver.Title);
+			Assert.AreEqual(ExpectedTitle, Driver.Title);
 		}
 	}
 }
