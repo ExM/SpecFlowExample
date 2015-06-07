@@ -7,54 +7,48 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using TechTalk.SpecFlow;
+using System.Collections.Generic;
 
 namespace SpecFlowExample.Support
 {
 	[Binding]
 	public class SeleniumSupport
 	{
-		private readonly IObjectContainer _objectContainer;
-		private IWebDriver _webDriver;
-		private static string _browser;
+		private static Dictionary<string, IWebDriver> _webDriverPool = new Dictionary<string, IWebDriver>();
 
 		private static bool ReuseWebSession
 		{
 			get { return ConfigurationManager.AppSettings["ReuseWebSession"] == "true"; }
 		}
 
-		public SeleniumSupport(IObjectContainer objectContainer)
+		public SeleniumSupport()
 		{
-			_objectContainer = objectContainer;
+			Trace("new SeleniumSupport");
 		}
 
 		[BeforeScenario]
 		public void BeforeWebScenario()
 		{
-			Start();
+			var webDriver = GetWebDriver(FeatureContext.Current.Get<string>("browserName"));
+			FeatureContext.Current.Set<IWebDriver>(webDriver);
 		}
 
 		[AfterStep]
 		public void ScreenshotAfterTest()
 		{
 			if (ScenarioContext.Current.TestError != null)
-			{
-				_webDriver.TakeScreenshot();
-			}
+				FeatureContext.Current.Get<IWebDriver>().TakeScreenshot();
 		}
 
-		[AfterScenario]
-		public void AfterWebScenario()
+		[AfterTestRun]
+		public static void AfterTestRun()
 		{
-			if (!ReuseWebSession)
-				Stop();
+			Trace("AfterTestRun");
+			foreach (var webDriver in _webDriverPool.Values)
+				webDriver.SafeStop();
 		}
 
-		public static void Set(string browser)
-		{
-			_browser = browser;
-		}
-
-		private IWebDriver GetDriver(string browser)
+		private IWebDriver CreateDriver(string browser)
 		{
 			IWebDriver webDriver = null;
 			switch (browser)
@@ -78,37 +72,34 @@ namespace SpecFlowExample.Support
 					throw new NotSupportedException(String.Format("Browser '{0}' does not exists.", browser));
 			}
 
+			webDriver.Manage().Timeouts().ImplicitlyWait(DefaultTimeout);
+			webDriver.Manage().Window.Maximize();
 			return webDriver;
 		}
 
-		public void Start()
+		public IWebDriver GetWebDriver(string browserName)
 		{
-			_webDriver = GetDriver(_browser);
-
-			_objectContainer.RegisterInstanceAs(_webDriver);
-
-			_webDriver.Manage().Timeouts().ImplicitlyWait(DefaultTimeout);
-			_webDriver.Manage().Window.Maximize();
-
-			Trace("Selenium started");
-		}
-
-		public void Stop()
-		{
-			if (_webDriver == null)
-				return;
-
-			try
+			if (_webDriverPool.ContainsKey(browserName))
 			{
-				_webDriver.Quit();
-				_webDriver.Dispose();
+				if(ReuseWebSession)
+				{
+					Trace("get from cache");
+					return _webDriverPool[browserName];
+				}
+				else
+				{
+					_webDriverPool[browserName].SafeStop();
+					_webDriverPool[browserName] = CreateDriver(browserName);
+					return _webDriverPool[browserName];
+				}
 			}
-			catch (Exception ex)
+			else
 			{
-				Debug.WriteLine(ex, "Selenium stop error");
+				var result = CreateDriver(browserName);
+				_webDriverPool.Add(browserName, result);
+				Trace("Selenium created");
+				return result;
 			}
-			_webDriver = null;
-			Trace("Selenium stopped");
 		}
 
 		private static void Trace(string message)

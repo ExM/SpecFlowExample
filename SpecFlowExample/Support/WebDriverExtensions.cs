@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Tracing;
+using System.Diagnostics;
 
 namespace SpecFlowExample.Support
 {
@@ -138,5 +139,19 @@ namespace SpecFlowExample.Support
 				}
 			}
 		}
+
+		public static void SafeStop(this IWebDriver webDriver)
+		{
+			try
+			{
+				webDriver.Quit();
+				webDriver.Dispose();
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(ex, "Selenium stop error");
+			}
+		}
+
 	}
 }

@@ -11,9 +11,9 @@ namespace SpecFlowExample.Features.StepDefinitions
 		private readonly MainPage _mainPage;
 		private IWebDriver _webDriver;
 
-		public SiteSearchSteps(IWebDriver webDriver)
+		public SiteSearchSteps()
 		{
-			_webDriver = webDriver;
+			_webDriver = FeatureContext.Current.Get<IWebDriver>();
 			_mainPage = new MainPage(_webDriver);
 		}
 

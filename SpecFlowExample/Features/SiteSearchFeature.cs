@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using SpecFlowExample.Support;
+using TechTalk.SpecFlow;
 
 namespace SpecFlowExample.Features
 {
@@ -8,9 +9,17 @@ namespace SpecFlowExample.Features
 	[TestFixture("Chrome")]
 	public partial class SiteSearchFeature
 	{
-		public SiteSearchFeature(string browser)
+		private string _browserName;
+
+		public SiteSearchFeature(string browserName)
 		{
-			SeleniumSupport.Set(browser);
+			_browserName = browserName;
+		}
+
+		[SetUp]
+		public void SetUp()
+		{
+			FeatureContext.Current.Set(_browserName, "browserName");
 		}
 	}
 }
